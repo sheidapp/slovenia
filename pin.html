@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>The Kiosk – potrditev kode</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="demo-screen" aria-label="The Kiosk – vnos potrditvene kode">
+      <img class="screen-art" src="PIN.jpg" alt="The Kiosk, 2. korak od 3" />
+
+      <form id="pin-form" class="screen-form" novalidate>
+        <label class="sr-only" for="pin">4-mestna potrditvena koda</label>
+        <input id="pin" name="pin" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="4" placeholder="" aria-label="4-mestna potrditvena koda" />
+        <button type="submit" aria-label="Potrdite"></button>
+      </form>
+
+      <a class="terms-hotspot" href="https://www.nth-media.biz/splosni-pogoji-sms-3400/" target="_blank" rel="noopener" aria-label="Splošni pogoji SMS 3400 – NTH Media d.o.o."></a>
+    </main>
+
+    <script>
+      const pin = document.querySelector('#pin');
+      pin.addEventListener('input', () => {
+        pin.value = pin.value.replace(/\D/g, '');
+        pin.classList.toggle('is-filled', pin.value.length > 0);
+      });
+      document.querySelector('#pin-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.location.href = 'dashboard.html';
+      });
+    </script>
+  </body>
+</html>

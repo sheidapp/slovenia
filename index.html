@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>The Kiosk – naročnina</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="demo-screen" aria-label="The Kiosk – vnos mobilne številke">
+      <img class="screen-art" src="MSDN%20PAGE_NTH.jpg" alt="The Kiosk, 1. korak od 3" />
+
+      <form id="phone-form" class="screen-form" novalidate>
+        <label class="sr-only" for="phone">Mobilna številka</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="" aria-label="Mobilna številka" />
+        <button type="submit" aria-label="Nadaljuj"></button>
+      </form>
+
+      <a class="terms-hotspot" href="https://www.nth-media.biz/splosni-pogoji-sms-3400/" target="_blank" rel="noopener" aria-label="Splošni pogoji SMS 3400 – NTH Media d.o.o."></a>
+    </main>
+
+    <script>
+      const phone = document.querySelector('#phone');
+      phone.addEventListener('input', () => phone.classList.toggle('is-filled', phone.value.length > 0));
+      document.querySelector('#phone-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        sessionStorage.setItem('kiosk-phone', phone.value.trim());
+        window.location.href = 'pin.html';
+      });
+    </script>
+  </body>
+</html>
